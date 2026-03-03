@@ -60,4 +60,17 @@ function draw() {
   if (health < 0) {
     console.log("Death and destruction has yet to come!!!");
   }
+
+  //btn for feeding
+  noStroke();
+  rect(width / 2, height / 2, 150, 80);
+}
+
+//press function to btns
+function mousePressed() {
+  //if click on btn for feeding
+  if (mouseX > width / 2 && mouseX < width / 2 + 150 && mouseY > height / 2 && mouseY < height / 2 + 80) {
+    //FEED, maybe class if it makes sense???
+    console.log("Test");
+  }
 }
