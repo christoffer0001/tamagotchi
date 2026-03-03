@@ -26,7 +26,7 @@ function draw() {
   for (let i = 0; i < timers.length; i++) {
     timers[i].tick();
 
-    //Auto huger logic
+    //Auto hunger logic
     if (timers[i].notice == true && timers[i].label == "hunger") {
       hunger -= 1;
       console.log("Hunger: " + hunger);
@@ -35,7 +35,7 @@ function draw() {
       timers[i].notice = false;
     }
 
-    //Removes inactive timers (exept "starving")
+    //Removes inactive timers (exept "starving"), (prb. needs modification)
     if (timers[i].active == false && timers[i].label != "starving") {
       timers.splice(i, 1);
     }
@@ -48,6 +48,8 @@ function draw() {
     //Check starvation timer
     if (timers[i].label == "starving" && timers[i].notice == true) {
       health -= 1;
+      timers[i].timeStamp = Date.now();
+      timers[i].notice = false;
       console.log(health);
     }
 
