@@ -6,8 +6,20 @@ let age;
 
 let timers = [];
 
+let food, lightBulb, playIcon, medicineIcon, cleanIcon, healthSpecturmIcon, diciplineIcon;
+
+function preload() {
+  food = loadImage("Assets/eat.png");
+  lightBulb = loadImage("Assets/night_day.png");
+  playIcon = loadImage("Assets/play.png");
+  medicineIcon = loadImage("Assets/medicine.png");
+  cleanIcon = loadImage("Assets/cleaning.png");
+  healthSpecturmIcon = loadImage("Assets/healthSpectrum.png");
+  diciplineIcon = loadImage("Assets/discipline.png");
+}
+
 function setup() {
-  createCanvas(1200, 720);
+  createCanvas(900, 720);
 
   //Var assign
   hunger = 10;
@@ -63,7 +75,19 @@ function draw() {
 
   //btn for feeding
   noStroke();
-  rect(width / 2, height / 2, 150, 80);
+
+  //Upper btns
+
+  image(food, width / 12, height / 20, 110, 80);
+  image(lightBulb, (width / 12) * 2 + width / 7, height / 20, 110, 80);
+  image(playIcon, (width / 12) * 3 + (width / 7) * 2, height / 20, 110, 80);
+  image(medicineIcon, (width / 12) * 4 + (width / 7) * 3, height / 20, 110, 80);
+
+  //Lower btns
+  image(cleanIcon, width / 12, height - height / 20 - 80, 150, 80);
+  image(healthSpecturmIcon, (width / 12) * 2 + width / 7, height - height / 20 - 80, 110, 80);
+  image(diciplineIcon, (width / 12) * 3 + (width / 7) * 2, height - height / 20 - 80, 110, 80);
+  //image((width / 12) * 4 + (width / 7) * 3, height - height / 20 - 80, 110, 80);
 }
 
 //press function to btns
