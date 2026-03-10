@@ -6,6 +6,12 @@ let foodIcon, lightBulbIcon, playIcon, medicineIcon, cleanIcon, healthSpecturmIc
 
 let displayFoodOptions = false;
 
+let btnHeight;
+let btnWidth;
+let btnGapX;
+let btnGapY;
+let btnGapY2;
+
 function preload() {
   foodIcon = loadImage("Assets/eat.png");
   lightBulbIcon = loadImage("Assets/night_day.png");
@@ -69,45 +75,54 @@ function draw() {
   //btn for feeding
   noStroke();
 
+  btnHeight = height / 9;
+  btnWidth = width / 8.18;
+  btnGapX = width / 9.78; // The gap between the btns on the x-axis
+  btnGapY = height / 20; // The gap between the btn and the boarder of the canvas
+  btnGapY2 = height / 6.21; // The gap between the top of the btn and the boarder of the canvas
+
   //Upper btns
-  //Food btn (with options)
+  //Food btn logic:
   if (displayFoodOptions) {
-    rect(width / 2 - 110 * 2, height / 2 - 80 / 2, 110, 80);
+    //Option 1
+    rect(width / 2 - btnWidth * 2, height / 2 - btnHeight / 2, btnWidth, btnHeight);
 
-    textSize(35);
-    text("Snack", width / 2 - 100 * 2.15, height / 2 + 35 / 3);
+    textSize(height / 20.57);
+    text("Snack", width / 2 - btnWidth * 1.95, height / 2 + btnHeight * 0.15);
 
-    rect(width / 2 + 110 * 0.8, height / 2 - 80 / 2, 110, 80);
-    text("Meal", width / 2 + 100 * 1.05, height / 2 + 35 / 3);
+    //Option 2
+    rect(width / 2 + btnWidth, height / 2 - btnHeight / 2, btnWidth, btnHeight);
+    text("Meal", width / 2 + btnWidth * 1.1, height / 2 + btnHeight * 0.15);
   } else {
-    image(foodIcon, width / 12, height / 20, 110, 80);
+    //No optionbar open
+    image(foodIcon, btnGapX, btnGapY, btnWidth, btnHeight);
   }
 
-  image(lightBulbIcon, (width / 12) * 2 + width / 7, height / 20, 110, 80);
-  image(playIcon, (width / 12) * 3 + (width / 7) * 2, height / 20, 110, 80);
-  image(medicineIcon, (width / 12) * 4 + (width / 7) * 3, height / 20, 110, 80);
+  image(lightBulbIcon, 2 * btnGapX + btnWidth, btnGapY, btnWidth, btnHeight);
+  image(playIcon, 3 * btnGapX + 2 * btnWidth, btnGapY, btnWidth, btnHeight);
+  image(medicineIcon, 4 * btnGapX + 3 * btnWidth, btnGapY, btnWidth, btnHeight);
 
   //Lower btns
-  image(cleanIcon, width / 12, height - height / 20 - 80, 110, 80);
-  image(healthSpecturmIcon, (width / 12) * 2 + width / 7, height - height / 20 - 80, 110, 80);
-  image(diciplineIcon, (width / 12) * 3 + (width / 7) * 2, height - height / 20 - 80, 110, 80);
-  rect((width / 12) * 4 + (width / 7) * 3, height - height / 20 - 80, 110, 80);
+  image(cleanIcon, btnGapX, height - btnGapY2, btnWidth, btnHeight);
+  image(healthSpecturmIcon, 2 * btnGapX + btnWidth, height - btnGapY2, btnWidth, btnHeight);
+  image(diciplineIcon, 3 * btnGapX + 2 * btnWidth, height - btnGapY2, btnWidth, btnHeight);
+  rect(4 * btnGapX + 3 * btnWidth, height - btnGapY2, btnWidth, btnHeight);
 }
 
 //press function to btns
 function mousePressed() {
   //if click on btn for feeding
-  if (mouseX > width / 12 && mouseX < width / 12 + 110 && mouseY > height / 20 && mouseY < height / 20 + 80 && displayFoodOptions != true) {
+  if (mouseX > btnGapX && mouseX < btnGapX + btnWidth && mouseY > btnGapY && mouseY < btnGapY + btnHeight && displayFoodOptions != true) {
     //Opens optionsbar
     displayFoodOptions = true;
   }
   //Chooses snack option
-  else if (mouseX > width / 2 - 110 * 2 && mouseX < width / 2 - 110 * 2 + 110 && mouseY > height / 2 - 80 / 2 && mouseY < height / 2 - 80 / 2 + 80 && displayFoodOptions) {
+  else if (mouseX > width / 2 - btnWidth * 2 && mouseX < width / 2 - btnWidth * 2 + btnWidth && mouseY > height / 2 - btnHeight / 2 && mouseY < height / 2 - btnHeight / 2 + btnHeight && displayFoodOptions) {
     tamagotchi.hunger += 1;
     displayFoodOptions = false;
   }
   //Chooses meal option
-  else if (mouseX > width / 2 + 110 * 0.8 && mouseX < width / 2 + 110 * 0.8 + 110 && mouseY > height / 2 - 80 / 2 && mouseY < height / 2 - 80 / 2 + 80 && displayFoodOptions) {
+  else if (mouseX > width / 2 + btnWidth * 0.8 && mouseX < width / 2 + btnWidth * 0.8 + btnWidth && mouseY > height / 2 - btnHeight / 2 && mouseY < height / 2 - btnHeight / 2 + btnHeight && displayFoodOptions) {
     tamagotchi.hunger += 2;
     displayFoodOptions = false;
   }
