@@ -2,13 +2,13 @@ let tamagotchi;
 
 let timers = [];
 
-let food, lightBulb, playIcon, medicineIcon, cleanIcon, healthSpecturmIcon, diciplineIcon;
+let foodIcon, lightBulbIcon, playIcon, medicineIcon, cleanIcon, healthSpecturmIcon, diciplineIcon;
 
 let displayFoodOptions = false;
 
 function preload() {
-  food = loadImage("Assets/eat.png");
-  lightBulb = loadImage("Assets/night_day.png");
+  foodIcon = loadImage("Assets/eat.png");
+  lightBulbIcon = loadImage("Assets/night_day.png");
   playIcon = loadImage("Assets/play.png");
   medicineIcon = loadImage("Assets/medicine.png");
   cleanIcon = loadImage("Assets/cleaning.png");
@@ -80,10 +80,10 @@ function draw() {
     rect(width / 2 + 110 * 0.8, height / 2 - 80 / 2, 110, 80);
     text("Meal", width / 2 + 100 * 1.05, height / 2 + 35 / 3);
   } else {
-    image(food, width / 12, height / 20, 110, 80);
+    image(foodIcon, width / 12, height / 20, 110, 80);
   }
 
-  image(lightBulb, (width / 12) * 2 + width / 7, height / 20, 110, 80);
+  image(lightBulbIcon, (width / 12) * 2 + width / 7, height / 20, 110, 80);
   image(playIcon, (width / 12) * 3 + (width / 7) * 2, height / 20, 110, 80);
   image(medicineIcon, (width / 12) * 4 + (width / 7) * 3, height / 20, 110, 80);
 
