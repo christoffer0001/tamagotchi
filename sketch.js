@@ -4,6 +4,8 @@ let timers = [];
 
 let food, lightBulb, playIcon, medicineIcon, cleanIcon, healthSpecturmIcon, diciplineIcon;
 
+let displayFoodOptions = false;
+
 function preload() {
   food = loadImage("Assets/eat.png");
   lightBulb = loadImage("Assets/night_day.png");
@@ -68,8 +70,19 @@ function draw() {
   noStroke();
 
   //Upper btns
+  //Food btn (with options)
+  if (displayFoodOptions) {
+    rect(width / 2 - 110 * 2, height / 2 - 80 / 2, 110, 80);
 
-  image(food, width / 12, height / 20, 110, 80);
+    textSize(35);
+    text("Snack", width / 2 - 100 * 2.15, height / 2 + 35 / 3);
+
+    rect(width / 2 + 110 * 0.8, height / 2 - 80 / 2, 110, 80);
+    text("Meal", width / 2 + 100 * 1.05, height / 2 + 35 / 3);
+  } else {
+    image(food, width / 12, height / 20, 110, 80);
+  }
+
   image(lightBulb, (width / 12) * 2 + width / 7, height / 20, 110, 80);
   image(playIcon, (width / 12) * 3 + (width / 7) * 2, height / 20, 110, 80);
   image(medicineIcon, (width / 12) * 4 + (width / 7) * 3, height / 20, 110, 80);
@@ -84,8 +97,18 @@ function draw() {
 //press function to btns
 function mousePressed() {
   //if click on btn for feeding
-  if (mouseX > width / 2 && mouseX < width / 2 + 150 && mouseY > height / 2 && mouseY < height / 2 + 80) {
-    //FEED, maybe class if it makes sense???
-    console.log("Test");
+  if (mouseX > width / 12 && mouseX < width / 12 + 110 && mouseY > height / 20 && mouseY < height / 20 + 80 && displayFoodOptions != true) {
+    //Opens optionsbar
+    displayFoodOptions = true;
+  }
+  //Chooses snack option
+  else if (mouseX > width / 2 - 110 * 2 && mouseX < width / 2 - 110 * 2 + 110 && mouseY > height / 2 - 80 / 2 && mouseY < height / 2 - 80 / 2 + 80 && displayFoodOptions) {
+    tamagotchi.hunger += 1;
+    displayFoodOptions = false;
+  }
+  //Chooses meal option
+  else if (mouseX > width / 2 + 110 * 0.8 && mouseX < width / 2 + 110 * 0.8 + 110 && mouseY > height / 2 - 80 / 2 && mouseY < height / 2 - 80 / 2 + 80 && displayFoodOptions) {
+    tamagotchi.hunger += 2;
+    displayFoodOptions = false;
   }
 }
